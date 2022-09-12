@@ -1,5 +1,3 @@
-// import { useEffect, useState } from "react";
-// import axios from 'axios';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -12,18 +10,6 @@ import RequireAuth from "./components/RequireAuth";
 import AdminRoom from "./pages/AdminRoom"
 
 function App() {
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   console.log(email, password);
-  //   const credentials = {email: email, password: password}
-
-  //   axios.post('http://localhost:8080/login',JSON.stringify(credentials)).then((response) => {
-  //     console.log(response);
-  //   }).catch(err => console.log(err))
-  // }
 
   return (
     <div className="App">

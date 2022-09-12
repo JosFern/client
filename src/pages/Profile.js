@@ -24,11 +24,14 @@ export default function Profile() {
     const [newPass, setNewPass] = useState('');
     const [confirmPass, setConfirmPass] = useState('');
 
+
+//handles user logout by removing logged_in in local storage
     const handleLogout = () => {
         localStorage.removeItem('logged_in')
         navigate('/login')
     }
 
+    //handles submit if user wants to update user name and email
     const handleSubmitAccount = (e) => {
         e.preventDefault();
 
@@ -49,6 +52,7 @@ export default function Profile() {
         
     }
 
+    //opens user name and email edit modal
     const editUserAccount = () => {
         setName(user.loggedIn.name)
         setEmail(user.loggedIn.email)
@@ -56,11 +60,13 @@ export default function Profile() {
         setModalAccount(true)
     }
 
+    //opens user password edit modal
     const editUserPassword = () => {
         setValidate('')
         setModalPassword(true)
     }
 
+    //handles submit if user wants to update user password
     const handleSubmitPass = (e) => {
         e.preventDefault();
 

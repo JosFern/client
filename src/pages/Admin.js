@@ -62,8 +62,9 @@ export default function Admin() {
     getUsersAPI()
 
     
-  },[dispatch])
-
+  }, [dispatch])
+  
+  //opens edit modal for user
   const handleEdit = (user) => {
     setId(user.id)
     setName(user.name);
@@ -71,6 +72,7 @@ export default function Admin() {
     setPassword(user.password);
   }
   
+  //handles submit for user update
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -87,11 +89,11 @@ export default function Admin() {
     
   }
 
+  //gets users from user database
   const getUsers = () => {
     axios.get('http://localhost:8080/users').then(res => {
       const users = res.data
       dispatch(addRegister(users.filter(user => user.role !== 'admin')))
-      // getUsersData(res.data)
     })
   }
 

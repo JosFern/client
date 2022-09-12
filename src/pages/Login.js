@@ -28,8 +28,11 @@ export default function Login() {
             navigate('/')
         }
 
-    },[dispatch, navigate])
+    }, [dispatch, navigate])
+    
 
+
+    //handles user login
     const handleSubmit = (e) => {
         e.preventDefault()
         setValidate('')

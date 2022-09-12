@@ -31,6 +31,7 @@ export default function Admin() {
         }).catch(err => console.log(err))
     }, [dispatch])
     
+    //gets user rooms data and load to hotel rooms slice
     const setRooms = () => {
         axios.get('http://localhost:8080/rooms').then(res => {
             const hotelRooms = []
@@ -41,6 +42,7 @@ export default function Admin() {
         }).catch(err => console.log(err))
     }
 
+    //memo for react table columns
     const columns = useMemo(() => [
         {
             Header: 'Room',
@@ -56,6 +58,7 @@ export default function Admin() {
         },
     ], [])
 
+    //additional columns (edit and delete buttons)
     const actionTableHooks = (hooks) => {
     hooks.visibleColumns.push((columns) => [
       ...columns,
@@ -79,6 +82,7 @@ export default function Admin() {
 
     const data = useMemo(() => hotel.rooms, [hotel.rooms])
     
+    //table props
     const {
     getTableProps,
     getTableBodyProps,
@@ -116,12 +120,15 @@ export default function Admin() {
     
     const {pageIndex} = state
     
+
+    //handles delete room per line
     const handleDeleteRoom = (rows) => {
         axios.delete('http://localhost:8080/rooms', {data: JSON.stringify(rows)}).then(res => {
             setRooms()
         }).catch(err => console.log(err))
     }
     
+    //opens edit room modal
     const openEditRoom = (row) => {
         setValidate('')
         setRoomId(row.id);
@@ -129,7 +136,7 @@ export default function Admin() {
         setEditModal(true);
     }
 
-
+    //handles edit room
     const handleEditRoom = (e) => {
         e.preventDefault()
         setValidate('')
@@ -158,6 +165,7 @@ export default function Admin() {
 
     }
     
+    //handles onchange inputs on create room/s
     const handleRoomChange = (e, index) => {
         const { name, value } = e.target;
         const list = [...newRooms];
@@ -165,22 +173,22 @@ export default function Admin() {
         setNewRooms(list);
     }
 
+    //handles add another input in create room modal
     const handleAddInput = () => {
         setNewRooms([...newRooms, {room: ''}])
     }
 
+    //handles to remove the input/s in create room modal
     const handleRemoveInput = (index) => {
         const list = [...newRooms];
         list.splice(index, 1);
         setNewRooms(list);
     }
 
+    //handles remove room/s in bulk
     const handleRemoveBulkRoom = () => {
         const rooms = []
         for (let i = 0; i < selectedFlatRows.length; i++) {
-            // console.log(hotel.rooms[selectedFlatRows[i].index]);
-            // console.log(selectedFlatRows[i].index);
-            // dispatch(removeRoom(selectedFlatRows[i].index))
             if (hotel.rooms[selectedFlatRows[i].index].person === null) {
                 rooms.push({ room_id: selectedFlatRows[i].original.id });
             }
@@ -204,6 +212,7 @@ export default function Admin() {
         return hotelRooms.filter(hotelRoom => rooms.includes(hotelRoom.room) ? true : false)
     }
 
+    //handles new created rooms in create rooms modal
     const handleSubmit = (e) => {
         e.preventDefault()
         const validation = ifExist(hotel.rooms, newRooms);

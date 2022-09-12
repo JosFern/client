@@ -8,11 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 export default function Registration() {
-    // const emails = useSelector(state => state.log);
-    // const navigate = useNavigate();
     const [query, setQuery] = useSearchParams();
-
-    // const [authenticated, setAuthenticated] = useState(false);
     const [validate, setValidate] = useState()
 
     const [name, setName] = useState('')
@@ -44,6 +40,7 @@ export default function Registration() {
     }, [query, setQuery, dispatch, navigate])
     
 
+    //validate user password
     const validation = () => {
         if (password.length < 8) return setValidate('Password must be 8 characters or longer!');
         
@@ -53,7 +50,7 @@ export default function Registration() {
     }
 
 
-
+// handles submit upon registering
     const handleSubmit = (e) => {
         e.preventDefault()
 

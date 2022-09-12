@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { Link } from "react-router-dom";
-// import ListRooms from "../components/ListRooms";
-// import { checkinUser, checkoutUser } from "../store/hotel";
 import { Link } from "react-router-dom";
 import ListRooms from "../components/ListRooms";
 import axios from "axios";
