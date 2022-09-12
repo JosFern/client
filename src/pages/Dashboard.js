@@ -182,8 +182,7 @@ export default function Dashboard() {
 
     const subtotal = days > 3 ? dailyRating - (dailyRating * .1)/* apply 10%discount */ : dailyRating;
 
-    const exceedingHours = days >= currRoom.day_stays ? (hours * 50) + ((currRoom.day_stays - currRoom.day_stays) * 24) * 50/*50 per hour*/ : 0;
-
+    const exceedingHours = days >= currRoom.day_stays ? (hours * 50) + ((days - currRoom.day_stays) * 24) * 50/*50 per hour*/ : 0;
     
     setPayment({ total: subtotal + exceedingHours, subtotal})
   }
